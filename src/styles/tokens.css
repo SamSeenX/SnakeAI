@@ -1,0 +1,29 @@
+:root {
+  --color-bg-deep: #030803;
+  --color-bg-card: #041204;
+  --color-bg-canvas: #010801;
+  --color-bg-pad: #041504;
+
+  --color-phosphor: #00ff66;
+  --color-phosphor-dim: #00aa44;
+  --color-phosphor-subtle: #009944;
+  --color-phosphor-glow: rgba(0, 255, 102, 0.35);
+  --color-phosphor-inset: rgba(0, 255, 102, 0.1);
+
+  --color-accent-gold: #ffcc00;
+  --color-accent-pink: #ff1155;
+  --color-accent-cyan: #00ffff;
+  --color-snake-head: #00e1ff;
+  --color-snake-border: #a6f8ff;
+
+  --font-retro: 'Press Start 2P', monospace, cursive;
+
+  --touch-target-min: 48px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}

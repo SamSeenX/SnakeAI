@@ -1,0 +1,32 @@
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.38) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 255, 0, 0.03)
+    );
+  background-size: 100% 3px, 6px 100%;
+  border-radius: var(--radius-md);
+  z-index: 10;
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px var(--color-phosphor), 0 0 18px var(--color-phosphor-glow);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 8px var(--color-accent-gold);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 10px var(--color-accent-pink);
+}
+
+.box-glow-green {
+  box-shadow: 0 0 12px var(--color-phosphor-glow), inset 0 0 8px var(--color-phosphor-inset);
+}

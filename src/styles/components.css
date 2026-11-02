@@ -1,0 +1,122 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 8, 1, 0.9);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 20;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 8px var(--color-accent-gold);
+  text-align: center;
+}
+
+.btn {
+  border: 2px solid var(--color-accent-gold);
+  background: rgba(255, 204, 0, 0.15);
+  color: var(--color-accent-gold);
+  padding: 12px 22px;
+  font-size: 9px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.35);
+  transition: transform 0.1s ease, background 0.1s ease;
+  min-height: var(--touch-target-min);
+}
+
+.btn.active {
+  background: var(--color-accent-gold);
+  color: #000;
+  transform: scale(0.94);
+}
+
+#controller {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 4px 0 2px 0;
+}
+
+.pad-status {
+  font-size: 7px;
+  color: var(--color-phosphor-subtle);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px var(--color-phosphor);
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(2, 48px);
+  gap: 6px;
+}
+
+.dbtn {
+  background: var(--color-bg-pad);
+  border: 1px solid var(--color-phosphor-dim);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-phosphor);
+  font-size: 15px;
+  box-shadow: 0 0 6px rgba(0, 255, 102, 0.2);
+  transition: background 0.08s, box-shadow 0.08s, transform 0.08s;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.dbtn.lit {
+  background: var(--color-accent-gold) !important;
+  color: #000 !important;
+  border-color: var(--color-accent-gold) !important;
+  box-shadow: 0 0 16px var(--color-accent-gold) !important;
+  transform: scale(0.92);
+}
+
+.toast-container {
+  position: fixed;
+  bottom: calc(16px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.toast {
+  background: #041204;
+  border: 1px solid var(--color-phosphor);
+  color: var(--color-phosphor);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 8px;
+  box-shadow: 0 0 10px var(--color-phosphor-glow);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

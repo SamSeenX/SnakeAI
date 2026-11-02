@@ -1,0 +1,21 @@
+{
+  "name": "Retro Snake 198X",
+  "short_name": "Snake198X",
+  "description": "Autonomous AI-powered retro snake game inspired by 1980s CRT arcade hardware",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030803",
+  "theme_color": "#030803",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
