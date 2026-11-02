@@ -1,23 +1,12 @@
 import { eventBus } from '../core/event-bus.js'
 
 export class OverlayComponent {
-  constructor(container) {
-    this.container = container
+  constructor() {
+    this.overlayEl = document.getElementById('overlay')
+    this.titleEl = document.getElementById('overlay-title')
+    this.startBtn = document.getElementById('start-btn')
     this.countdownTimer = null
-    this.render()
     this.bind()
-  }
-
-  render() {
-    this.container.innerHTML = `
-      <div id="overlay" class="overlay">
-        <div id="overlay-title" class="title">NEON COBRA</div>
-        <button id="start-btn" class="btn">PRESS START</button>
-      </div>
-    `
-    this.overlayEl = this.container.querySelector('#overlay')
-    this.titleEl = this.container.querySelector('#overlay-title')
-    this.startBtn = this.container.querySelector('#start-btn')
   }
 
   bind() {
@@ -29,8 +18,8 @@ export class OverlayComponent {
       eventBus.emit('game:start', !isLevelUp)
     }
 
-    this.startBtn.addEventListener('click', handleStart)
-    this.startBtn.addEventListener('touchstart', handleStart, { passive: false })
+    this.startBtn?.addEventListener('click', handleStart)
+    this.startBtn?.addEventListener('touchstart', handleStart, { passive: false })
 
     this.unsubGameOver = eventBus.on('game:gameover', () => this.showGameOver())
     this.unsubLevelUp = eventBus.on('game:levelup', () => this.showLevelUp())
@@ -45,17 +34,21 @@ export class OverlayComponent {
 
   showGameOver() {
     this.mode = 'gameover'
-    this.titleEl.textContent = 'GAME OVER'
-    this.titleEl.style.color = 'var(--color-accent-pink)'
-    this.titleEl.style.textShadow = '0 0 10px var(--color-accent-pink)'
+    if (this.titleEl) {
+      this.titleEl.textContent = 'GAME OVER'
+      this.titleEl.style.color = 'var(--color-accent-pink)'
+      this.titleEl.style.textShadow = '0 0 10px var(--color-accent-pink)'
+    }
     this.startCountdown('RETRY', true)
   }
 
   showLevelUp() {
     this.mode = 'levelup'
-    this.titleEl.textContent = 'ZONE CONQUERED!'
-    this.titleEl.style.color = 'var(--color-accent-gold)'
-    this.titleEl.style.textShadow = '0 0 10px var(--color-accent-gold)'
+    if (this.titleEl) {
+      this.titleEl.textContent = 'ZONE CONQUERED!'
+      this.titleEl.style.color = 'var(--color-accent-gold)'
+      this.titleEl.style.textShadow = '0 0 10px var(--color-accent-gold)'
+    }
     this.startCountdown('NEXT LEVEL', false)
   }
 
@@ -63,17 +56,17 @@ export class OverlayComponent {
     this.clearCountdown()
     this.show()
     let count = 2
-    this.startBtn.textContent = `${label} [ ${count} ]`
+    if (this.startBtn) this.startBtn.textContent = `${label} [ ${count} ]`
 
     this.countdownTimer = setInterval(() => {
       count--
       if (count > 0) {
-        this.startBtn.textContent = `${label} [ ${count} ]`
+        if (this.startBtn) this.startBtn.textContent = `${label} [ ${count} ]`
       } else {
         this.clearCountdown()
-        this.startBtn.classList.add('active')
+        this.startBtn?.classList.add('active')
         setTimeout(() => {
-          this.startBtn.classList.remove('active')
+          this.startBtn?.classList.remove('active')
           this.hide()
           eventBus.emit('game:start', resetGrid)
         }, 200)
@@ -82,11 +75,11 @@ export class OverlayComponent {
   }
 
   show() {
-    this.overlayEl.classList.remove('hidden')
+    if (this.overlayEl) this.overlayEl.style.display = 'flex'
   }
 
   hide() {
-    this.overlayEl.classList.add('hidden')
+    if (this.overlayEl) this.overlayEl.style.display = 'none'
   }
 
   destroy() {

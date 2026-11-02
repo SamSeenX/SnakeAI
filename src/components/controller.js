@@ -1,33 +1,15 @@
 import { eventBus } from '../core/event-bus.js'
 
 export class ControllerComponent {
-  constructor(container) {
-    this.container = container
+  constructor() {
     this.activeTimeouts = new Map()
-    this.render()
-    this.bind()
-  }
-
-  render() {
-    this.container.innerHTML = `
-      <div id="controller">
-        <div class="pad-status">CONTROLLER ACTIVE</div>
-        <div class="dpad" role="group" aria-label="Virtual directional pad">
-          <div></div>
-          <button id="btn-up" class="dbtn" aria-label="Up">&#9650;</button>
-          <div></div>
-          <button id="btn-left" class="dbtn" aria-label="Left">&#9664;</button>
-          <button id="btn-down" class="dbtn" aria-label="Down">&#9660;</button>
-          <button id="btn-right" class="dbtn" aria-label="Right">&#9654;</button>
-        </div>
-      </div>
-    `
     this.buttons = {
-      UP: this.container.querySelector('#btn-up'),
-      DOWN: this.container.querySelector('#btn-down'),
-      LEFT: this.container.querySelector('#btn-left'),
-      RIGHT: this.container.querySelector('#btn-right')
+      UP: document.getElementById('btn-up'),
+      DOWN: document.getElementById('btn-down'),
+      LEFT: document.getElementById('btn-left'),
+      RIGHT: document.getElementById('btn-right')
     }
+    this.bind()
   }
 
   bind() {

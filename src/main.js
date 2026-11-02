@@ -6,47 +6,21 @@ import { OverlayComponent } from './components/overlay.js'
 import { ToastComponent } from './components/toast.js'
 import { GameRenderer } from './game/renderer.js'
 import { GameEngine } from './game/engine.js'
-import { CANVAS_SIZE } from './game/constants.js'
 
 function bootstrap() {
   initErrorBoundary()
   storage.requestPersistence()
 
-  const app = document.getElementById('app')
-  if (!app) return
+  new HeaderComponent()
+  new ControllerComponent()
+  new OverlayComponent()
+  new ToastComponent(document.body)
 
-  // Header
-  const headerContainer = document.createElement('div')
-  headerContainer.style.width = '100%'
-  app.appendChild(headerContainer)
-  new HeaderComponent(headerContainer)
-
-  // Game box (canvas + CRT overlay + menu overlay)
-  const gameBox = document.createElement('div')
-  gameBox.id = 'game-box'
-  gameBox.innerHTML = `
-    <canvas id="canvas" width="${CANVAS_SIZE}" height="${CANVAS_SIZE}"></canvas>
-    <div class="crt-overlay"></div>
-  `
-  app.appendChild(gameBox)
-
-  const canvas = gameBox.querySelector('#canvas')
+  const canvas = document.getElementById('canvas')
   const renderer = new GameRenderer(canvas)
   const engine = new GameEngine(renderer)
 
-  // Overlay mounted inside gameBox
-  new OverlayComponent(gameBox)
-
-  // Virtual Controller
-  const controllerContainer = document.createElement('div')
-  controllerContainer.style.width = '100%'
-  app.appendChild(controllerContainer)
-  new ControllerComponent(controllerContainer)
-
-  // Toasts
-  new ToastComponent(document.body)
-
-  // Initial draw
+  // Initial render of snake and board
   engine.init(true)
 }
 

@@ -28,7 +28,37 @@
   <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div id="game-title-header" class="text-glow-green">RETRO SNAKE 198X</div>
+
+    <div id="top-bar">
+      <div>SCORE:<br><span id="hud-score" style="color:var(--color-accent-gold);">00000</span></div>
+      <div>BEST:<br><span id="hud-best" style="color:var(--color-phosphor);">00000</span></div>
+      <div>GRID:<br><span id="hud-grid" style="color:var(--color-accent-cyan);">16x16</span></div>
+    </div>
+
+    <div id="game-box">
+      <canvas id="canvas" width="400" height="400"></canvas>
+      <div class="crt-overlay"></div>
+      <div id="overlay" class="overlay">
+        <div id="overlay-title" class="title">NEON COBRA</div>
+        <button id="start-btn" class="btn">PRESS START</button>
+      </div>
+    </div>
+
+    <div id="controller">
+      <div class="pad-status">CONTROLLER ACTIVE</div>
+      <div class="dpad" role="group" aria-label="Virtual directional pad">
+        <div></div>
+        <button id="btn-up" class="dbtn" aria-label="Up">&#9650;</button>
+        <div></div>
+        <button id="btn-left" class="dbtn" aria-label="Left">&#9664;</button>
+        <button id="btn-down" class="dbtn" aria-label="Down">&#9660;</button>
+        <button id="btn-right" class="dbtn" aria-label="Right">&#9654;</button>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
